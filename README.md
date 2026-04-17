@@ -1,4 +1,4 @@
-# /extreme-clarity — a Claude Code skill for clearer docs and memos
+# /extreme-clarity: a Claude Code skill for clearer docs and memos
 
 Checks a doc, slide deck, or memo against a clarity checklist, then rewrites it if it's weak. Install once, invoke with `/extreme-clarity` in Claude Code, and point it at whatever you're about to send.
 
@@ -6,37 +6,42 @@ Checks a doc, slide deck, or memo against a clarity checklist, then rewrites it 
 
 Two modes:
 
-- **CRITIQUE.** Give it a doc. It flags what's weakening the doc — every vague phrase standing in for a fact, every meandering opener, every ask the reader has to guess at — and proposes the top few changes that would help most.
-- **MAKEOVER.** Same input, but the skill also rewrites the doc. It keeps your argument and facts intact and fixes whatever was pulling it down.
+- **CRITIQUE.** Drop in a doc. It flags what's weakening the asset and proposes the top few fixes.
+- **MAKEOVER.** Same input, but the skill also rewrites the doc. It preserves your argument and facts, and fixes whatever was pulling it down.
 
-The checklist is drawn from two sources: [Naomi Gleit's "Extreme Clarity"](https://naomi.com/extreme-clarity-c977d38f56dc), a write-up of doc and meeting-hygiene practices from her time running product at Meta, and standard sentence-level writing discipline — summarize first, one idea per paragraph, end with the ask, define fuzzy terms once. It's a checklist, not a taxonomy. Items overlap; the value is consistent coverage, not clean partitioning.
+The checklist is drawn from two sources: [Naomi Gleit's "Extreme Clarity"](https://naomi.com/extreme-clarity-c977d38f56dc), a write-up of doc and meeting-hygiene practices from her time running product at Meta, and standard sentence-level writing discipline (summarize first, one idea per paragraph, end with the ask, define fuzzy terms once). It's a checklist, not a taxonomy. Items overlap. The value is consistent coverage, not clean partitioning.
 
 ## Before and after
 
 Before:
 
-> Regarding the timeline, we've made significant progress in many areas but are facing some compliance challenges. We'll need to leverage our existing resources appropriately. Happy to discuss.
+> Hey team,
+>
+> Wanted to give a quick update on where things are with the Q2 launch, since a few moving pieces came up this week and I don't want anyone surprised.
+>
+> Overall we've been making solid progress across the workstreams, but the compliance side has developed in a way that's going to need a decision from us soon. Our current vendor is raising some concerns that we may not be able to fully resolve on the timeline we'd hoped, and we've also been looking at alternatives that have come up in conversations. Both paths have trade-offs worth working through.
+>
+> I want to flag this early so we can start thinking about implications for the launch and any downstream effects on the roadmap. There's also some engineering bandwidth questions depending on which way we go.
+>
+> Happy to jump on a call later this week. Let me know when works.
 
 After:
 
-> **Where things stand.** The Q2 customer-pilot launch slips from April 20 to May 4. That pushes the planned partner demo past the May board review — losing our best shot at the Q2 revenue target if we don't decide the vendor path this week.
+> **TLDR.** Q2 pilot launches May 4, not April 20, unless we switch consent vendors by Wednesday. Missing May 4 means missing the partner demo at the May board.
 >
-> **What's happening.**
-> 1. The current consent vendor (test environment only) can't sign off on production use by April 20 — compliance requires a signed DPA covering real-user data, and we don't have one.
-> 2. The alternative vendor demoed April 13. Their stack is production-ready today, but migrating burns ~5 engineering days.
-> 3. Staying with the current vendor adds another 2-week compliance review cycle after they finish their side.
+> **The choice.** Stay with the current vendor (another ~2 weeks of compliance review, no eng work now) or migrate to the alternative (5 engineering days now, unblocks May 4, cleaner DPA posture going forward).
 >
-> **My read.** Migrate. 5 engineering days is cheaper than missing the May board review.
+> **What migration costs.** Sarah and two others come off the onboarding rewrite, which pushes that work into June. Onboarding is on Retention's Q2 roadmap. The PM there will push back, and she's right to.
 >
-> **Ask.** Decide by EOD Wednesday. Otherwise May 4 slips too.
+> **My read.** Migrate anyway. The board demo and the cleaner compliance posture are worth the onboarding slip. I'll own the Retention conversation.
+>
+> **Ask.** Yes or no by EOD Wednesday.
 
-Notice what the rewrite does — and what it doesn't. The structural fixes (TLDR up top, numbered facts, named ask) are cheap. The real work is in the specifics: *what launches* (the Q2 customer pilot), *what's at stake* (the board review, the Q2 revenue target), *what the trade-off actually costs* (5 engineering days vs. a 2-week compliance cycle). Structure alone doesn't make a doc clear. It makes a doc scannable. Stakes-naming is what makes it clear.
-
-The skill can do the structural work automatically. The stakes-naming it can only prompt you toward — by flagging every vague phrase and asking you to replace it with the real number.
+The structural moves are mechanical: TLDR up top, numbered facts, explicit ask. Naming the real stakes (who gets pulled off what, which meeting you miss, which other team you owe a conversation to) is specific to your situation. The skill flags vague phrases and asks you to replace them. Filling in the specifics is still on you.
 
 ## When to use it
 
-Good fit: strategy docs, memos, slide decks, meeting notes, project updates, investor emails — anything longer than half a page with more than one reader.
+Good fit: strategy docs, memos, slide decks, meeting notes, project updates, investor emails. Anything longer than half a page with more than one reader.
 
 Not a good fit: marketing copy, UI microcopy, journal entries, first-person emails. Those have their own register, and this checklist will flatten the voice.
 
