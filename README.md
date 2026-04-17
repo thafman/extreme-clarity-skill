@@ -1,50 +1,24 @@
-# Your docs are probably a 9/18. This Claude Code skill tells you why, and rewrites them.
+# /extreme-clarity — a Claude Code skill for clearer docs and memos
 
-`/extreme-clarity` scores any written asset against an 18-point rubric, then rewrites failing ones until they pass.
+Scores a doc, slide deck, or memo against a clarity rubric, then rewrites it if it's failing. Install once, invoke with `/extreme-clarity` in Claude Code, and point it at whatever you're about to send.
 
-## The bar is 16/18. Typical first drafts clear 9–12.
+## What it does
 
-1. Two modes: CRITIQUE (scored report + top-3 fixes) and MAKEOVER (rewrite to ≥ 16, with score delta).
-2. The rubric: Naomi Gleit's 10 doc/meeting-hygiene practices, plus 8 sentence-level writing rules.
-3. Install with `./install.sh`. Next Claude Code session, invoke `/extreme-clarity`.
+Two modes:
 
-## Every "I thought you meant…" email is the bill for a doc that failed the bar.
+- **CRITIQUE.** Give it a doc. It returns a score, marks each rule pass or fail, and flags the 3 changes that would improve it the most.
+- **MAKEOVER.** Same input, but the skill also rewrites the doc — keeping your argument and facts, fixing whatever was pulling the score down.
 
-Extreme clarity, as [Naomi Gleit](https://naomi.com/extreme-clarity-c977d38f56dc) (Head of Product, Meta) defines it, is when everyone finishes the doc with the same mental model of the goal, the options, and the next steps. It's a binary property — two readers are either aligned or they aren't. This skill is the test for it.
+The rubric has 18 rules in two halves. Ten cover how the doc is packaged: does it use one consistent font, are lists numbered or bulleted, is there an agenda. Eight cover how each sentence does its work: does it state a takeaway, is it concrete, does it end with a specific ask. A doc needs to pass 16 of the 18 to clear the bar. Typical first drafts land in the 9–12 range.
 
-## CRITIQUE scores your doc. MAKEOVER rewrites it.
+## Before and after
 
-**CRITIQUE returns the score, the hard-cap triggers, and the 3 fixes that move it the most.** Drop in a doc, slide deck, URL, or pasted text. The skill returns:
+A typical project update, 9/18:
 
-1. A score out of 18, labeled PASS / WARN / FAIL.
-2. Each of the 18 rules marked pass or fail, with a one-line note.
-3. Hard-cap triggers — single failures that collapse the total regardless of what else passes.
-4. The top 3 fixes, each with a suggested rewrite.
+> Regarding the timeline, we've made significant progress in many areas but are facing some compliance challenges. We'll need to leverage our existing resources appropriately. Happy to discuss.
 
-**MAKEOVER rewrites the asset to ≥ 16, preserving your argument and facts.** Typical delta is +6 to +10 points — a claim drawn from the rubric's own example scores, not from a surveyed sample.
+After MAKEOVER, 17/18:
 
-## 18 rules: 10 on doc hygiene, 8 on sentence craft.
-
-**Document and meeting hygiene (Naomi Gleit's 10).** docs · slides · lists · links · font · bold · italics · visuals · agenda · real-time editing.
-
-**Sentence-level writing (8).** takeaway sentences · facts separated from assumptions · concrete numbers-dates-names · one idea per paragraph · summary first then detail · end with what you need · define fuzzy terms once · numbered lists when order matters.
-
-Full scoring doc with pass/fail examples for every rule: [rubric.md](extreme-clarity/references/rubric.md).
-
-## Five single failures can collapse any score regardless of everything else.
-
-1. No TLDR at the top of a doc longer than half a page → cap 12.
-2. No specific ask or next step in the close → cap 13.
-3. Lists mix numbered and bulleted arbitrarily → cap 14.
-4. More than 2 bolded phrases per paragraph → cap 14.
-5. Fuzzy terms used 5+ times without definition → cap 13.
-
-## Same argument, +8 points in two minutes of rewriting.
-
-### Before scores 9/18.
-> Regarding the timeline, we've made significant progress in many areas but are facing some compliance challenges. We'll need to **leverage** our existing resources **appropriately**. Happy to discuss.
-
-### After scores 17/18.
 > **TLDR.** Launch slips 2 weeks. Compliance blocks us until we pick a vendor path. Need your call by Thursday.
 >
 > **Facts.**
@@ -56,20 +30,28 @@ Full scoring doc with pass/fail examples for every rule: [rubric.md](extreme-cla
 >
 > **Ask.** Review the comparison doc by EOD Wednesday. Otherwise we slip another week.
 
-## `./install.sh` symlinks the skill into `~/.claude/skills/extreme-clarity`.
+The rewrite replaces vague phrases with facts, decisions, and asks — the moves that push most docs across the bar.
 
-Appears in the skills index on the next Claude Code session. Uninstall with `rm ~/.claude/skills/extreme-clarity`.
+## Where the rubric comes from
 
-## `/six-pager` handles 9-section exec memos. This handles every other doc.
+The first ten rules are from [Naomi Gleit's "Extreme Clarity"](https://naomi.com/extreme-clarity-c977d38f56dc), a write-up of doc and meeting-hygiene practices from her time running product at Meta. The other eight are standard technical-writing discipline — summarize first, one idea per paragraph, end with the ask, define fuzzy terms once. The full list with pass/fail examples for each rule is in [rubric.md](extreme-clarity/references/rubric.md).
 
-[`/six-pager`](https://github.com/thafman/six-pager-skill) applies extreme clarity inside the institutional Amazon/Capital-One form. `/extreme-clarity` is the generic-doc layer underneath.
+## When to use it
 
-## Naomi Gleit wrote the 10. Rules 11–18 are standard technical-writing canon.
+Good fit: strategy docs, memos, slide decks, meeting notes, project updates, investor emails — anything longer than half a page with more than one reader.
 
-Rules 1–10 come from Naomi Gleit's ["Extreme Clarity"](https://naomi.com/extreme-clarity-c977d38f56dc) Medium post. Rules 11–18 are long-standing technical-writing discipline — TLDR first, concrete claims, one idea per paragraph, end with the ask — restated here as hard pass/fail rules.
+Not a good fit: marketing copy, UI microcopy, journal entries, first-person emails. Those have their own register; this rubric will flatten the voice.
 
-## MIT license. Do what you want with it.
+For exec-audience strategic memos in the specific 9-section institutional form, reach for [`/six-pager`](https://github.com/thafman/six-pager-skill). This skill handles the generic-doc layer underneath.
 
----
+## Install
 
-**Run `/extreme-clarity` on the last memo you sent.** You will learn something about your writing that peer review won't.
+```sh
+./install.sh
+```
+
+Symlinks `extreme-clarity/` into `~/.claude/skills/extreme-clarity`. Start a new Claude Code session and invoke `/extreme-clarity`. Uninstall with `rm ~/.claude/skills/extreme-clarity`.
+
+## License
+
+MIT.
